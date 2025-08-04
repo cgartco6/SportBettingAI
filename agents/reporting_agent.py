@@ -5,6 +5,20 @@ from .base_agent import BaseAgent
 from config import Config
 from utils.visualization import create_performance_plot
 from dash_app.app import run_dashboard
+from utils.visualization import create_performance_history, create_win_loss_pie
+
+def send_telegram_report(self, report):
+    # ... existing code ...
+    
+    # Send performance chart
+    perf_fig = create_performance_history(self.conductor.performance_log)
+    perf_img = perf_fig.to_image(format="png")
+    self.bot.send_photo(chat_id=Config.TELEGRAM_CHAT_ID, photo=perf_img)
+    
+    # Send win/loss chart
+    pie_fig = create_win_loss_pie(self.conductor.performance_log)
+    pie_img = pie_fig.to_image(format="png")
+    self.bot.send_photo(chat_id=Config.TELEGRAM_CHAT_ID, photo=pie_img)
 
 class ReportingAgent(BaseAgent):
     def __init__(self, agent_id, conductor):
