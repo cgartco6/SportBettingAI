@@ -1,0 +1,28 @@
+/* Custom styles for the dashboard */
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-header {
+    font-weight: bold;
+    background-color: #3c3c3c;
+}
+
+.table {
+    color: #ffffff;
+}
+
+.table thead th {
+    background-color: #3c3c3c;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #3c3c3c;
+}
