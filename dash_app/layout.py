@@ -2,6 +2,18 @@ from dash import html, dcc, dash_table
 import dash_bootstrap_components as dbc
 from datetime import datetime
 import plotly.graph_objects as go
+from utils.visualization import create_performance_history, create_value_bets_plot
+
+# In the layout:
+dcc.Graph(
+    id='performance-history',
+    figure=create_performance_history(performance_log)
+),
+
+dcc.Graph(
+    id='value-bets-plot',
+    figure=create_value_bets_plot(value_bets)
+)
 
 def create_layout(report_data=None):
     """Create the layout for the Dash application."""
