@@ -1,9 +1,13 @@
-from dash import Dash
+from dash import Dash, callback, Input, Output, State
 import dash_bootstrap_components as dbc
 from .layout import create_layout
 from .callbacks import register_callbacks
+import os
+import json
+import pandas as pd
+import plotly.express as px
 
-def create_app():
+def create_app(report_data=None):
     """Create and configure the Dash application."""
     app = Dash(
         __name__,
@@ -12,17 +16,17 @@ def create_app():
     )
     
     app.title = "Sports Betting AI Dashboard"
-    app.layout = create_layout()
+    app.layout = create_layout(report_data)
     
     # Register callbacks
     register_callbacks(app)
+    
+    # Store report data in app config
+    app.report_data = report_data
     
     return app
 
 def run_dashboard(report_data=None):
     """Run the dashboard application."""
-    app = create_app()
-    # If report_data is provided, we can store it in the app's config for callbacks to access
-    if report_data is not None:
-        app.config['report_data'] = report_data
+    app = create_app(report_data)
     app.run_server(host='0.0.0.0', port=8050, debug=False)
