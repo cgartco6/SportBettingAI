@@ -32,3 +32,15 @@ class Config:
     
     # Bookmaker sources
     BOOKMAKERS = ["Hollywoodbets", "Betway"]
+    
+    # Prediction settings
+    TARGET = "dc_btts"  # Double chance + both teams to score
+    
+    # QA thresholds
+    DATA_QUALITY_THRESHOLD = 0.95  # Minimum valid data percentage
+    MODEL_PERFORMANCE_THRESHOLD = 0.65  # Minimum accuracy before retraining
+    CONFIDENCE_THRESHOLDS = {
+        "high": 0.7,
+        "medium": 0.6,
+        "low": 0.5
+    }
